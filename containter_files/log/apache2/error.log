@@ -1,0 +1,49 @@
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.18.0.4. Set the 'ServerName' directive globally to suppress this message
+[Fri Aug 07 23:33:58.965176 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.9 configured -- resuming normal operations
+[Fri Aug 07 23:33:58.965560 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Sat Aug 08 12:17:49.703629 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.19.0.3. Set the 'ServerName' directive globally to suppress this message
+[Sat Aug 08 12:19:56.440591 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.9 configured -- resuming normal operations
+[Sat Aug 08 12:19:56.441103 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Sat Aug 08 12:20:32.358647 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.21.0.4. Set the 'ServerName' directive globally to suppress this message
+[Sat Aug 08 12:20:54.211756 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.9 configured -- resuming normal operations
+[Sat Aug 08 12:20:54.212083 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Sat Aug 08 12:22:26.685203 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.22.0.4. Set the 'ServerName' directive globally to suppress this message
+[Sat Aug 08 12:23:18.525742 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.9 configured -- resuming normal operations
+[Sat Aug 08 12:23:18.526176 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Sat Aug 08 12:25:49.311641 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.22.0.4. Set the 'ServerName' directive globally to suppress this message
+[Sat Aug 08 12:26:58.856563 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.9 configured -- resuming normal operations
+[Sat Aug 08 12:26:58.856944 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Sat Aug 08 12:27:37.889819 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.22.0.4. Set the 'ServerName' directive globally to suppress this message
+[Sat Aug 08 12:27:39.711496 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.9 configured -- resuming normal operations
+[Sat Aug 08 12:27:39.711870 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[08-Aug-2020 12:41:28 UTC] WordPress database error This function has none of DETERMINISTIC, NO SQL, or READS SQL DATA in its declaration and binary logging is enabled (you *might* want to use the less safe log_bin_trust_function_creators variable) for query CREATE FUNCTION wp_fn_realmedialibrary_childs(rootId INT, _useTempChildTableForCheck BOOLEAN) RETURNS varchar(1000) SQL SECURITY INVOKER BEGIN
+        	DECLARE sTemp VARCHAR(1000);
+        	DECLARE sTempChd VARCHAR(1000);
+        	SET sTemp = '$';
+        	SET sTempChd = CAST(rootId AS CHAR);
+		    SET SESSION group_concat_max_len = 100000;
+        	WHILE sTempChd IS NOT NULL DO
+        		SET sTemp = CONCAT(sTemp,',',sTempChd);
+        		IF _useTempChildTableForCheck IS NULL OR _useTempChildTableForCheck = false THEN
+        		    SELECT GROUP_CONCAT(id) INTO sTempChd FROM wp_realmedialibrary WHERE FIND_IN_SET(parent,sTempChd) > 0;
+        		ELSE
+        		    SELECT GROUP_CONCAT(id) INTO sTempChd FROM wp_realmedialibrary_tmp WHERE FIND_IN_SET(parent,sTempChd) > 0;
+        		END IF;
+        	END WHILE;
+        	RETURN sTemp;
+        END made by activate_plugin, do_action('activate_real-media-library-lite/index.php'), WP_Hook->do_action, WP_Hook->apply_filters, MatthiasWeb\RealMediaLibrary\Activator->install, MatthiasWeb\RealMediaLibrary\Activator->dbDelta, MatthiasWeb\RealMediaLibrary\Activator->supportsChildQuery, MatthiasWeb\RealMediaLibrary\Activator->install, MatthiasWeb\RealMediaLibrary\Activator->createChildQueryFunction
+[08-Aug-2020 12:41:28 UTC] WordPress database error FUNCTION wordpress_db_01.wp_fn_realmedialibrary_childs does not exist for query SELECT rmldata.*
+                FROM wp_realmedialibrary_tmp AS rmldata 
+                WHERE FIND_IN_SET(id, wp_fn_realmedialibrary_childs(2, true))
+                AND 1=1  
+                ORDER BY rmldata.parent, rmldata.ord  made by activate_plugin, do_action('activate_real-media-library-lite/index.php'), WP_Hook->do_action, WP_Hook->apply_filters, MatthiasWeb\RealMediaLibrary\Activator->install, MatthiasWeb\RealMediaLibrary\Activator->dbDelta, MatthiasWeb\RealMediaLibrary\Activator->supportsChildQuery, MatthiasWeb\RealMediaLibrary\Activator->install, MatthiasWeb\RealMediaLibrary\Activator->checkChildQuery
+[Sat Aug 08 13:22:12.445241 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.18.0.3. Set the 'ServerName' directive globally to suppress this message
+[Sat Aug 08 13:24:00.847525 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.9 configured -- resuming normal operations
+[Sat Aug 08 13:24:00.847962 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Sat Aug 08 23:48:10.655110 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully

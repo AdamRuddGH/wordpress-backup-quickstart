@@ -1,7 +1,9 @@
 version: '3.3'
 services:
   mysql:
-    image: mysql:5.7
+    networks:
+        - group_network
+    image: mysql:latest
     restart: always
     expose:
      - 3306
@@ -13,8 +15,12 @@ services:
     volumes:
      - mysql_data:/var/lib/mysql
   wordpress:
+    networks:
+        - group_network
     image: wordpress
-    restart: always
+    restart: unless-stopped
+    ports:
+     - "127.0.0.1:8080:80"
     depends_on:
      - mysql
     environment:
@@ -26,12 +32,17 @@ services:
      - LETSENCRYPT_EMAIL
     volumes:
      - wordpress_files:/var/www/html
+     - ./containter_files:/var/
+     - ./theme:/var/www/html/wp-content/themes
   backup:
+    networks:
+        - group_network
     image: aveltens/wordpress-backup
     restart: always
     volumes:
      - ./backups:/backups
      - wordpress_files:/var/www/html
+
     depends_on:
      - mysql
     environment:
@@ -39,6 +50,10 @@ services:
      - "MYSQL_ENV_MYSQL_USER=$MYSQL_USER"
      - "MYSQL_ENV_MYSQL_PASSWORD=$MYSQL_PASSWORD"
      - "MYSQL_PORT_3306_TCP_PORT=3306"
+
 volumes:
   mysql_data:
   wordpress_files:
+networks:
+    group_network:
+
