@@ -19,3 +19,18 @@ Customize the variables in ```.env``` and/or the configuration in ```docker-comp
 ## Contact
 
 Please contact me for any questions & feedback: angelo.veltens@online.de
+
+
+## parasol corp how to backup
+
+**Restore**
+`docker exec wordpress-backup-quickstart_backup_1 restore 20200807`  <- number is the date in the backup directory
+20200807 would be the dateid of the file being backed up. Given that it's only doing day based backups, we should be interested in doing github commits often.
+
+**Backup**
+`docker exec wordpress-backup-quickstart_backup_1 backup`
+
+Seems to work across:
+- Wordress versions
+- posts
+- themes ???
