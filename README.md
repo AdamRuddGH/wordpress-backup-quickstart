@@ -30,6 +30,9 @@ Please contact me for any questions & feedback: angelo.veltens@online.de
 **Backup**
 `docker exec wordpress-backup-quickstart_backup_1 backup`
 
+**Restore**
+`docker exec backup-my-blog restore 20141114` where 20141114 is the backup_20141114. backup files
+
 Seems to work across:
 - Wordress versions
 - posts
