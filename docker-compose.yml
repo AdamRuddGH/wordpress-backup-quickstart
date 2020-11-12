@@ -20,7 +20,7 @@ services:
     image: wordpress
     restart: unless-stopped
     ports:
-     - "127.0.0.1:8080:80"
+     - "127.0.0.1:80:80" #required so that WP2Static exports correctly. If its on another port it will not be able to find the files
     depends_on:
      - mysql
     environment:
@@ -32,8 +32,9 @@ services:
      - LETSENCRYPT_EMAIL
     volumes:
      - wordpress_files:/var/www/html
-     - ./containter_files:/var/
+     #- ./containter_files:/var/
      - ./theme:/var/www/html/wp-content/themes
+     - ./static_site_export:/var/www/html/wp-content/uploads/wp2static-processed-site
   backup:
     networks:
         - group_network
